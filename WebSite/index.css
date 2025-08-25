@@ -1,5 +1,5 @@
  .u-section-1 {
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/images/DSC_0045.jpg');
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('./images/DSC_0045.jpg');
   background-position: 50% 50%, 50% 50%;
   background-size: cover;
 }
@@ -608,7 +608,7 @@
     font-size: 1.3333333333333333rem;
   }
 } .u-section-3 {
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/images/32423.jpg');
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('./images/32423.jpg');
 }
 
 .u-section-3 .u-sheet-1 {

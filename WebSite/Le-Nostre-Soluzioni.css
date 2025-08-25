@@ -78,7 +78,7 @@
 .u-section-2 .u-image-1 {
   min-height: 326px;
   background-position: 50% 0%;
-  background-image: url("/images/RB00403X.JPG");
+  background-image: url("./images/RB00403X.JPG");
   background-size: cover;
 }
 
@@ -89,7 +89,7 @@
 .u-section-2 .u-image-2 {
   min-height: 326px;
   background-position: 50% 0%;
-  background-image: url("/images/RB00420X.JPG");
+  background-image: url("./images/RB00420X.JPG");
   background-size: cover;
 }
 
@@ -211,7 +211,7 @@
 
 .u-section-3 .u-image-1 {
   min-height: 305px;
-  background-image: url("/images/IMG_0879_risultato.jpg");
+  background-image: url("./images/IMG_0879_risultato.jpg");
   background-position: 50% 62.47%;
   background-size: cover;
 }
@@ -290,7 +290,7 @@
 
 .u-section-4 .u-image-1 {
   min-height: 325px;
-  background-image: url("/images/impianto-solare-termico-foto-01-pagina-principale.jpg");
+  background-image: url("./images/impianto-solare-termico-foto-01-pagina-principale.jpg");
   background-size: 110%;
   background-position: 0% 44.12%;
 }
@@ -301,7 +301,7 @@
 
 .u-section-4 .u-image-2 {
   min-height: 325px;
-  background-image: url("/images/PHOTO-2024-05-08-08-53-592.jpg");
+  background-image: url("./images/PHOTO-2024-05-08-08-53-592.jpg");
   background-size: 135%;
   background-position: 51.46% 29.71%;
 }
@@ -375,7 +375,7 @@
 
 .u-section-5 .u-image-1 {
   min-height: 305px;
-  background-image: url("/images/3-batterie-a-confronto-960x540.jpg");
+  background-image: url("./images/3-batterie-a-confronto-960x540.jpg");
   background-position: 50% 55.37%;
   background-size: cover;
 }
@@ -471,7 +471,7 @@
 
 .u-section-6 .u-image-1 {
   min-height: 325px;
-  background-image: url("/images/IMG_0999_risultato.jpg");
+  background-image: url("./images/IMG_0999_risultato.jpg");
   background-size: cover;
   background-position: 50% 68.9%;
 }
@@ -482,7 +482,7 @@
 
 .u-section-6 .u-image-2 {
   min-height: 325px;
-  background-image: url("/images/PHOTO-2022-07-26-11-11-34.jpg");
+  background-image: url("./images/PHOTO-2022-07-26-11-11-34.jpg");
   background-size: cover;
   background-position: 50% 0%;
 }
@@ -573,7 +573,7 @@
 
 .u-section-7 .u-image-1 {
   min-height: 305px;
-  background-image: url("/images/1663345666012.jpg");
+  background-image: url("./images/1663345666012.jpg");
   background-position: 50% 65.52%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -635,7 +635,7 @@
 
 .u-section-8 .u-image-1 {
   min-height: 480px;
-  background-image: url("/images/vmc.png");
+  background-image: url("./images/vmc.png");
   background-position: 50% 50%;
   background-size: auto 160%;
   background-repeat: no-repeat;
