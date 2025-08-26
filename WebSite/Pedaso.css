@@ -953,3 +953,8 @@
 .u-section-8 .u-text-3 {
   margin: 46px 0 -77px;
 }
+
+a.pswp__share--download
+{
+display: none;
+}
