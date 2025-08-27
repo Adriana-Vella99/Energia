@@ -331,18 +331,18 @@
     grid-auto-columns: calc(100% - 0px);
   }
 }.u-section-4 .u-sheet-1 {
-  min-height: 688px;
+  min-height: 200px;
 }
 
 .u-section-4 .u-gallery-1 {
-  height: 552px;
+  height: 200px;
   margin-top: 60px;
   margin-bottom: 50px;
   grid-gap: 17px;
 }
 
 .u-section-4 .u-gallery-inner-1 {
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(3, auto);
   --gap: 17px;
 }
 
@@ -800,7 +800,7 @@
 }
 
 .u-section-7 .u-gallery-1 {
-  height: 1407px;
+  height: 2200px;
   margin-top: 60px;
   margin-bottom: 50px;
   grid-gap: 17px;
