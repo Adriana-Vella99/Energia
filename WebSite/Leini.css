@@ -355,7 +355,7 @@
 }
 
 .u-section-4 .u-gallery-1 {
-  height: 400px;
+  height: 425px;
   margin-top: 60px;
   margin-bottom: 50px;
   grid-gap: 17px;
@@ -834,7 +834,7 @@
 }
 
 .u-section-7 .u-gallery-1 {
-  height: 2200px;
+  height: 2450px;
   margin-top: 60px;
   margin-bottom: 50px;
   grid-gap: 17px;
@@ -959,7 +959,7 @@
   }
 
   .u-section-7 .u-gallery-inner-1 {
-    grid-template-columns: repeat(1, auto);
+    grid-template-columns: repeat(2, auto);
   }
 }
 
