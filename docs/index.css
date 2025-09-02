@@ -760,8 +760,8 @@
 }
 
 .u-section-4 .u-shape-2 {
-  width: 826px;
-  height: 540px;
+  width: 1011px; /* It was 826 */
+  height: 465px; /* It was 540 */
   background-image: none;
   --animation-custom_in-translate_x: 0px;
   --animation-custom_in-translate_y: -300px;
@@ -774,7 +774,7 @@
 
 .u-section-4 .u-image-1 {
   width: 1011px;
-  height: 607px;
+  height: auto; /* It was 607 */
   --animation-custom_in-translate_x: 300px;
   --animation-custom_in-translate_y: 0px;
   --animation-custom_in-opacity: 0;
@@ -793,7 +793,8 @@
   --animation-custom_in-opacity: 0;
   --animation-custom_in-rotate: 0deg;
   --animation-custom_in-scale: 1;
-  margin: -265px calc(((100% - 1140px) / 2)  + 131px) 60px auto;
+  /*margin: -265px calc(((100% - 1140px) / 2)  + 131px) 60px auto;*/
+  margin: -60px auto 60px auto; /* top 60px, bottom 60px, left/right auto */
 }
 
 .u-section-4 .u-container-layout-1 {
