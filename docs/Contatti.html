@@ -178,28 +178,38 @@
               <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-2">
                   <div class="u-expanded-width u-form u-form-1">
-                    <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+                    <form action="https://formspree.io/f/movnvqag" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
                       <div class="u-form-group u-form-name">
                         <label for="name-31fa" class="u-label">Nome</label>
-                        <input type="text" placeholder="Inserisci il tuo Nome" id="name-31fa" name="name" class="u-input u-input-rectangle" required="">
+                        <input type="text" placeholder="Inserisci il tuo Nome" id="name-31fa" name="name" class="u-input u-input-rectangle" required>
                       </div>
                       <div class="u-form-email u-form-group">
                         <label for="email-31fa" class="u-label">Email</label>
-                        <input type="email" placeholder="Inserisci un indirizzo email valido" id="email-31fa" name="email" class="u-input u-input-rectangle" required="">
+                        <input type="email" placeholder="Inserisci un indirizzo email valido" id="email-31fa" name="email" class="u-input u-input-rectangle" required>
                       </div>
                       <div class="u-form-group u-form-message">
                         <label for="message-31fa" class="u-label">Messaggio</label>
-                        <textarea placeholder="Inserisci il tuo messaggio" rows="4" cols="50" id="message-31fa" name="message" class="u-input u-input-rectangle" required=""></textarea>
+                        <textarea placeholder="Inserisci il tuo messaggio" rows="4" cols="50" id="message-31fa" name="message" class="u-input u-input-rectangle" required></textarea>
                       </div>
+
+                      <!-- reCAPTCHA -->
+                      <div class="g-recaptcha" data-sitekey="6Lem4rsrAAAAAJdX_najy2QtmLtlesWi1oAk7lnE"></div>
+
+                      <!-- Opzioni Formsubmit -->
+                      <input type="hidden" name="_captcha" value="true">
+                      <input type="hidden" name="_next" value="https://design4green.it/#grazie">
+                      <input type="hidden" name="_template" value="box">
+
                       <div class="u-align-left u-form-group u-form-submit">
                         <a href="#" class="u-btn u-btn-submit u-button-style u-custom-color-3 u-btn-1">Invia</a>
                         <input type="submit" value="submit" class="u-form-control-hidden">
                       </div>
                       <div class="u-form-send-message u-form-send-success"> Grazie! Il tuo messaggio è stato inviato. </div>
                       <div class="u-form-send-error u-form-send-message"> Impossibile inviare il messaggio. Correggere gli errori e riprovare. </div>
-                      <input type="hidden" value="" name="recaptchaResponse">
-                      <input type="hidden" name="formServices" value="59f7fd37-1927-bcfd-16ad-6465782c03de">
+                      <input type="text" name="_honey" style="display:none">
                     </form>
+                    <!-- Script reCAPTCHA -->
+                    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
                   </div>
                 </div>
               </div>
