@@ -209,7 +209,7 @@
 
                       <!-- Opzioni Formsubmit -->
                       <input type="hidden" name="_captcha" value="true">
-                      <input type="hidden" name="_next" value="https://design4green.it/#grazie">
+                      <input type="hidden" name="_next" value="https://design4green.it/Contatti.html#grazie">
                       <input type="hidden" name="_template" value="box">
                       <input type="text" name="_honey" style="display:none">
 
@@ -218,7 +218,15 @@
                         <input type="submit" value="submit" class="u-form-control-hidden"> -->
                             <button type="submit" class="u-btn u-button-style u-custom-color-3 u-btn-1">Invia</button>
                       </div>
-                      <div class="u-form-send-message u-form-send-success"> Grazie! Il tuo messaggio è stato inviato. </div>
+                      <div id="grazie" class="popup-grazie" style="display:none;">
+                        <div class="popup-content">
+                          <h2>Grazie!</h2>
+                          <p>Il tuo messaggio è stato inviato correttamente.</p>
+                          <button onclick="document.getElementById('grazie').style.display='none'">Chiudi</button>
+                        </div>
+                      </div>
+
+                      <!-- <div class="u-form-send-message u-form-send-success"> Grazie! Il tuo messaggio è stato inviato. </div> -->
                       <div class="u-form-send-error u-form-send-message"> Impossibile inviare il messaggio. Correggere gli errori e riprovare. </div>
                     </form>
                     </div>
@@ -313,4 +321,13 @@
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80"> Design 4 Green – Copyright © 2025 </section>
   
+    <!--Popup grazie-->
+    <script>
+      window.addEventListener('load', function() {
+        if (window.location.hash === '#grazie') {
+          document.getElementById('grazie').style.display = 'block';
+        }
+      });
+    </script>
+
 </body></html>
