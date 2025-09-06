@@ -226,8 +226,16 @@
                         </div>
                       </div>
 
-                      <!-- <div class="u-form-send-message u-form-send-success"> Grazie! Il tuo messaggio è stato inviato. </div> -->
-                      <div class="u-form-send-error u-form-send-message"> Impossibile inviare il messaggio. Correggere gli errori e riprovare. </div>
+                      <div id="popup-errore" class="popup-errore" style="display:none;">
+                        <div class="popup-content">
+                          <h2>Errore</h2>
+                          <p>Il messaggio non è stato inviato. Controlla i campi e riprova.</p>
+                          <button onclick="document.getElementById('popup-errore').style.display='none'">Chiudi</button>
+                        </div>
+                      </div>
+
+                      <!-- <div class="u-form-send-message u-form-send-success"> Grazie! Il tuo messaggio è stato inviato. </div> 
+                      <div class="u-form-send-error u-form-send-message"> Impossibile inviare il messaggio. Correggere gli errori e riprovare. </div> -->
                     </form>
                     </div>
                 </div>
@@ -329,5 +337,17 @@
         }
       });
     </script>
+
+    <!--Popup errore-->
+    <script>
+      document.querySelector("form").addEventListener("submit", function(e) {
+        var recaptcha = document.querySelector(".g-recaptcha-response").value;
+        if (recaptcha === "") {
+          e.preventDefault();
+          document.getElementById("popup-errore").style.display = "flex";
+        }
+      });
+    </script>
+
 
 </body></html>
