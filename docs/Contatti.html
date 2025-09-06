@@ -35,6 +35,18 @@
     <meta property="og:title" content="Contatti">
     <meta property="og:type" content="website">
   <meta name="referrer" content="origin"><meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+
+  <!-- Popup errore -->
+    <script>
+      document.querySelector("form").addEventListener("submit", function(e) {
+        var recaptcha = document.querySelector(".g-recaptcha-response").value;
+        if (recaptcha === "") {
+          e.preventDefault(); // blocca l'invio
+          document.getElementById("popup-errore").style.display = "flex"; // mostra il pop-up
+        }
+      });
+    </script>
+  
   <body data-path-to-root="/" data-include-products="false" class="u-body u-clearfix u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-header" id="sec-0168" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><div class="u-clearfix u-sheet u-sheet-1">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WSPTD688"
@@ -337,17 +349,5 @@
         }
       });
     </script>
-
-    <!--Popup errore-->
-    <script>
-      document.querySelector("form").addEventListener("submit", function(e) {
-        var recaptcha = document.querySelector(".g-recaptcha-response").value;
-        if (recaptcha === "") {
-          e.preventDefault();
-          document.getElementById("popup-errore").style.display = "flex";
-        }
-      });
-    </script>
-
 
 </body></html>
