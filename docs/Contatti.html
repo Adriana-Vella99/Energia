@@ -35,17 +35,6 @@
     <meta property="og:title" content="Contatti">
     <meta property="og:type" content="website">
   <meta name="referrer" content="origin"><meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
-
-  <!-- Popup errore -->
-    <script>
-      document.querySelector("form").addEventListener("submit", function(e) {
-        var recaptcha = document.querySelector(".g-recaptcha-response").value;
-        if (recaptcha === "") {
-          e.preventDefault(); // blocca l'invio
-          document.getElementById("popup-errore").style.display = "flex"; // mostra il pop-up
-        }
-      });
-    </script>
   
   <body data-path-to-root="/" data-include-products="false" class="u-body u-clearfix u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-header" id="sec-0168" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><div class="u-clearfix u-sheet u-sheet-1">
     <!-- Google Tag Manager (noscript) -->
@@ -226,8 +215,9 @@
                       <input type="text" name="_honey" style="display:none">
 
                       <div class="u-align-left u-form-group u-form-submit">
-                        <a href="#" class="u-btn u-btn-submit u-button-style u-custom-color-3 u-btn-1">Invia</a>
-                        <input type="submit" value="submit" class="u-form-control-hidden">
+                        <!-- <a href="#" class="u-btn u-btn-submit u-button-style u-custom-color-3 u-btn-1">Invia</a>
+                        <input type="submit" value="submit" class="u-form-control-hidden"> -->
+                        <button type="submit" class="u-btn u-btn-submit u-button-style u-custom-color-3 u-btn-1">Invia</button>
                       </div>
                       <div id="grazie" class="popup-grazie" style="display:none;">
                         <div class="popup-content">
@@ -347,6 +337,19 @@
           document.getElementById('grazie').style.display = 'block';
         }
       });
+    </script>
+
+    <!-- Popup errore -->
+    <script>
+      window.onload = function() {
+        document.querySelector("form").addEventListener("submit", function(e) {
+          var recaptcha = document.querySelector(".g-recaptcha-response");
+          if (!recaptcha || recaptcha.value === "") {
+            e.preventDefault(); // blocca l'invio
+            document.getElementById("popup-errore").style.display = "flex"; // mostra il pop-up
+          }
+        });
+      };
     </script>
 
 </body></html>
