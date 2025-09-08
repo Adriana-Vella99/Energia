@@ -6,7 +6,10 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WSPTD688');</script>
-    <!-- End Google Tag Manager -->
+
+    <!-- reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="Business Center, Business Center">
@@ -190,7 +193,14 @@
               <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-2">
                   <div class="u-expanded-width u-form u-form-1">
-                    <form target="_blank" action="https://formsubmit.co/uldoor29@gmail.com" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form" style="padding: 10px;">
+                    <form action="https://formsubmit.co/uldoor29@gmail.com" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form" style="padding: 10px;">
+                      
+                      <!-- Opzioni Formsubmit -->
+                      <input type="hidden" name="_captcha" value="true">
+                      <input type="hidden" name="_next" value="https://design4green.it/Contatti.html#grazie">
+                      <input type="hidden" name="_template" value="box">
+                      <input type="text" name="_honey" style="display:none">
+                      
                       <div class="u-form-group u-form-name">
                         <label for="name-31fa" class="u-label">Nome</label>
                         <input type="text" placeholder="Inserisci il tuo Nome" id="name-31fa" name="name" class="u-input u-input-rectangle" required>
@@ -206,13 +216,6 @@
 
                       <!-- reCAPTCHA -->
                       <div class="g-recaptcha" data-sitekey="6LdxE8IrAAAAAC_RtBrhaI0SwsS-cMIwU2RC4awo"></div>
-                      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-                      <!-- Opzioni Formsubmit -->
-                      <input type="hidden" name="_captcha" value="true">
-                      <input type="hidden" name="_next" value="https://design4green.it/Contatti.html#grazie">
-                      <input type="hidden" name="_template" value="box">
-                      <input type="text" name="_honey" style="display:none">
 
                       <div class="u-align-left u-form-group u-form-submit">
                         <button type="submit" class="u-btn u-btn-submit u-button-style u-custom-color-3 u-btn-1">Invia</button> 
@@ -310,5 +313,10 @@
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80"> Design 4 Green – Copyright © 2025 </section>
   
+<script>
+  if (window.location.hash === "#grazie") {
+    document.getElementById("grazie").style.display = "block";
+  }
+</script>
 
 </body></html>
