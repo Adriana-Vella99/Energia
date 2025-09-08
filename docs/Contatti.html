@@ -219,24 +219,9 @@
                         <input type="submit" value="submit" class="u-form-control-hidden"> -->
                         <button type="submit" class="u-btn u-btn-submit u-button-style u-custom-color-3 u-btn-1">Invia</button>
                       </div>
-                      <div id="grazie" class="popup-grazie" style="display:none;">
-                        <div class="popup-content">
-                          <h2>Grazie!</h2>
-                          <p>Il tuo messaggio è stato inviato correttamente.</p>
-                          <button onclick="document.getElementById('grazie').style.display='none'">Chiudi</button>
-                        </div>
-                      </div>
 
-                      <div id="popup-errore" class="popup-errore" style="display:none;">
-                        <div class="popup-content">
-                          <h2>Errore</h2>
-                          <p>Il messaggio non è stato inviato. Controlla i campi e riprova.</p>
-                          <button onclick="document.getElementById('popup-errore').style.display='none'">Chiudi</button>
-                        </div>
-                      </div>
-
-                      <!-- <div class="u-form-send-message u-form-send-success"> Grazie! Il tuo messaggio è stato inviato. </div> 
-                      <div class="u-form-send-error u-form-send-message"> Impossibile inviare il messaggio. Correggere gli errori e riprovare. </div> -->
+                      <div id="grazie" class="u-form-send-message u-form-send-success"> Grazie! Il tuo messaggio è stato inviato. </div> 
+                      <div class="u-form-send-error u-form-send-message"> Impossibile inviare il messaggio. Correggere gli errori e riprovare. </div>
                     </form>
                     </div>
                 </div>
@@ -330,26 +315,5 @@
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80"> Design 4 Green – Copyright © 2025 </section>
   
-    <!--Popup grazie-->
-    <script>
-      window.addEventListener('load', function() {
-        if (window.location.hash === '#grazie') {
-          document.getElementById('grazie').style.display = 'block';
-        }
-      });
-    </script>
-
-    <!-- Popup errore -->
-    <script>
-      window.onload = function() {
-        document.querySelector("form").addEventListener("submit", function(e) {
-          var recaptcha = document.querySelector(".g-recaptcha-response");
-          if (!recaptcha || recaptcha.value === "") {
-            e.preventDefault(); // blocca l'invio
-            document.getElementById("popup-errore").style.display = "flex"; // mostra il pop-up
-          }
-        });
-      };
-    </script>
 
 </body></html>
