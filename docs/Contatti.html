@@ -17,7 +17,7 @@
         }
 
         #messaggi.attivo {
-          max-height: 100px;
+          max-height: 50px;
         }
 
         .messaggio {
@@ -337,49 +337,81 @@
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80"> Design 4 Green – Copyright © 2025 </section>
   
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const form = document.getElementById("contattiForm");
-          const messaggi = document.getElementById("messaggi");
-          const messaggioSuccesso = document.getElementById("grazie");
-          const messaggioErrore = document.getElementById("errore");
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contattiForm");
+    const messaggi = document.getElementById("messaggi");
+    const messaggioSuccesso = document.getElementById("grazie");
+    const messaggioErrore = document.getElementById("errore");
 
-          form.addEventListener("submit", function (e) {
-            e.preventDefault();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-            const recaptchaResponse = grecaptcha.getResponse();
-            if (!recaptchaResponse) {
-              messaggi.classList.add("attivo");
-              messaggioErrore.textContent = "❌ Completa il reCAPTCHA prima di inviare.";
-              messaggioErrore.style.display = "block";
-              messaggioSuccesso.style.display = "none";
-              return;
-            }
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
+        messaggi.classList.add("attivo");
+        messaggioErrore.textContent = "❌ Completa il reCAPTCHA prima di inviare.";
+        messaggioErrore.style.display = "block";
+        messaggioSuccesso.style.display = "none";
 
-            fetch(form.action, {
-              method: "POST",
-              body: new FormData(form),
-              headers: {
-                'Accept': 'application/json'
-              }
-            }).then(response => {
-              messaggi.classList.add("attivo");
-              if (response.ok) {
-                messaggioSuccesso.style.display = "block";
-                messaggioErrore.style.display = "none";
-                form.reset();
-                grecaptcha.reset();
-              } else {
-                messaggioSuccesso.style.display = "none";
-                messaggioErrore.style.display = "block";
-              }
-            }).catch(error => {
-              messaggi.classList.add("attivo");
-              messaggioSuccesso.style.display = "none";
-              messaggioErrore.style.display = "block";
-            });
-          });
+        // 🔴 Tracciamento errore: reCAPTCHA non compilato
+        window.dataLayer.push({
+          event: 'form_submit_error',
+          form_status: 'recaptcha_missing',
+          page_path: window.location.pathname
         });
-      </script>
+
+        return;
+      }
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        messaggi.classList.add("attivo");
+
+        if (response.ok) {
+          messaggioSuccesso.style.display = "block";
+          messaggioErrore.style.display = "none";
+          form.reset();
+          grecaptcha.reset();
+
+          // ✅ Tracciamento invio riuscito
+          window.dataLayer.push({
+            event: 'form_submit',
+            form_status: 'success',
+            page_path: window.location.pathname
+          });
+
+        } else {
+          messaggioSuccesso.style.display = "none";
+          messaggioErrore.style.display = "block";
+
+          // ❌ Tracciamento errore: risposta non OK
+          window.dataLayer.push({
+            event: 'form_submit_error',
+            form_status: 'response_error',
+            page_path: window.location.pathname
+          });
+        }
+      }).catch(error => {
+        messaggi.classList.add("attivo");
+        messaggioSuccesso.style.display = "none";
+        messaggioErrore.style.display = "block";
+
+        // ❌ Tracciamento errore: fetch fallito
+        window.dataLayer.push({
+          event: 'form_submit_error',
+          form_status: 'fetch_error',
+          page_path: window.location.pathname
+        });
+      });
+    });
+  });
+</script>
+
 
 </body></html>
