@@ -218,14 +218,6 @@
                       <div class="u-align-left u-form-group u-form-submit">
                         <button type="submit" class="u-btn u-btn-submit u-button-style u-custom-color-3 u-btn-1">Invia</button> 
                       </div>
-
-                      <div id="grazie" class="u-form-send-message u-form-send-success" style="display:none;">
-                        Grazie! Il tuo messaggio è stato inviato.
-                      </div>
-
-                      <div id="errore" class="u-form-send-error u-form-send-message" style="display:none;">
-                        Impossibile inviare il messaggio. Correggere gli errori e riprovare.
-                      </div>
                     </form>
                     </div>
                 </div>
@@ -319,37 +311,5 @@
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80"> Design 4 Green – Copyright © 2025 </section>
   
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector("form");
-        const messaggioSuccesso = document.getElementById("grazie");
-        const messaggioErrore = document.getElementById("errore");
-
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            headers: {
-              'Accept': 'application/json'
-            }
-          }).then(response => {
-            if (response.ok) {
-              messaggioSuccesso.style.display = "block";
-              messaggioErrore.style.display = "none";
-              form.reset();
-            } else {
-              messaggioSuccesso.style.display = "none";
-              messaggioErrore.style.display = "block";
-            }
-          }).catch(error => {
-            messaggioSuccesso.style.display = "none";
-            messaggioErrore.style.display = "block";
-          });
-        });
-      });
-    </script>
-
 
 </body></html>
