@@ -9,6 +9,15 @@
 
     <!-- reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+      #grazie, #errore {
+        display: none;
+        margin-top: 1em;
+        font-weight: bold;
+      }
+      #grazie { color: green; }
+      #errore { color: red; }
+    </style>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -16,7 +25,7 @@
     <meta name="description" content="">
     <title>Contatti</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Contatti.css" media="screen">
+    <link rel="stylesheet" href="Contatti.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 7.12.12, nicepage.com">
@@ -193,14 +202,7 @@
               <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-2">
                   <div class="u-expanded-width u-form u-form-1">
-                    <form action="https://formsubmit.co/uldoor29@gmail.com" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form" style="padding: 10px;">
-                      
-                      <!-- Opzioni Formsubmit -->
-                      <input type="hidden" name="_captcha" value="true">
-                      <input type="hidden" name="_next" value="https://design4green.it/Contatti.html#grazie">
-                      <input type="hidden" name="_template" value="box">
-                      <input type="text" name="_honey" style="display:none">
-                      
+                    <form id="contattiForm" action="https://formsubmit.co/ajax/uldoor29@gmail.com" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form" style="padding: 10px;">                      
                       <div class="u-form-group u-form-name">
                         <label for="name-31fa" class="u-label">Nome</label>
                         <input type="text" placeholder="Inserisci il tuo Nome" id="name-31fa" name="name" class="u-input u-input-rectangle" required>
@@ -214,12 +216,20 @@
                         <textarea placeholder="Inserisci il tuo messaggio" rows="4" cols="50" id="message-31fa" name="message" class="u-input u-input-rectangle" required></textarea>
                       </div>
 
+                      <!-- Opzioni Formsubmit -->
+                      <input type="hidden" name="_captcha" value="false">
+                      <input type="hidden" name="_template" value="box">
+                      <input type="text" name="_honey" style="display:none">
+
                       <!-- reCAPTCHA -->
                       <div class="g-recaptcha" data-sitekey="6LdxE8IrAAAAAC_RtBrhaI0SwsS-cMIwU2RC4awo"></div>
 
                       <div class="u-align-left u-form-group u-form-submit">
                         <button type="submit" class="u-btn u-btn-submit u-button-style u-custom-color-3 u-btn-1">Invia</button> 
                       </div>
+                      <!-- Messaggi di feedback -->
+                      <div id="grazie">✅ Grazie! Il tuo messaggio è stato inviato.</div>
+                      <div id="errore">❌ Impossibile inviare il messaggio. Riprova più tardi.</div>
                     </form>
                     </div>
                 </div>
@@ -313,10 +323,45 @@
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80"> Design 4 Green – Copyright © 2025 </section>
   
-<script>
-  if (window.location.hash === "#grazie") {
-    document.getElementById("grazie").style.display = "block";
-  }
-</script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("contattiForm");
+      const messaggioSuccesso = document.getElementById("grazie");
+      const messaggioErrore = document.getElementById("errore");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Verifica che reCAPTCHA sia completato
+        const recaptchaResponse = grecaptcha.getResponse();
+        if (!recaptchaResponse) {
+          messaggioErrore.textContent = "❌ Completa il reCAPTCHA prima di inviare.";
+          messaggioErrore.style.display = "block";
+          return;
+        }
+
+        fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            messaggioSuccesso.style.display = "block";
+            messaggioErrore.style.display = "none";
+            form.reset();
+            grecaptcha.reset(); // Reset reCAPTCHA
+          } else {
+            messaggioSuccesso.style.display = "none";
+            messaggioErrore.style.display = "block";
+          }
+        }).catch(error => {
+          messaggioSuccesso.style.display = "none";
+          messaggioErrore.style.display = "block";
+        });
+      });
+    });
+  </script>
 
 </body></html>
