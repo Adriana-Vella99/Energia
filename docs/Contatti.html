@@ -10,14 +10,26 @@
     <!-- reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
-      #grazie, #errore {
-        display: none;
-        margin-top: 1em;
-        font-weight: bold;
-      }
-      #grazie { color: green; }
-      #errore { color: red; }
-    </style>
+        #messaggi {
+          overflow: hidden;
+          max-height: 0;
+          transition: max-height 0.5s ease-out;
+        }
+
+        #messaggi.attivo {
+          max-height: 200px;
+        }
+
+        .messaggio {
+          padding: 1em;
+          margin-top: 1em;
+          font-weight: bold;
+          display: none;
+        }
+
+        #grazie { color: green; }
+        #errore { color: red; }
+      </style>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -216,7 +228,7 @@
                         <textarea placeholder="Inserisci il tuo messaggio" rows="4" cols="50" id="message-31fa" name="message" class="u-input u-input-rectangle" required></textarea>
                       </div>
 
-                      <!-- Opzioni Formsubmit -->
+                      <!-- Formsubmit option -->
                       <input type="hidden" name="_captcha" value="false">
                       <input type="hidden" name="_template" value="box">
                       <input type="text" name="_honey" style="display:none">
@@ -225,12 +237,16 @@
                       <div class="g-recaptcha" data-sitekey="6LdxE8IrAAAAAC_RtBrhaI0SwsS-cMIwU2RC4awo"></div>
 
                       <div class="u-align-left u-form-group u-form-submit">
-                      <button type="submit" class="u-btn u-button-style u-custom-color-3 u-btn-1">Invia</button>
-                      </div>
-                      <!-- Messaggi di feedback -->
-                      <div id="grazie">✅ Grazie! Il tuo messaggio è stato inviato.</div>
-                      <div id="errore">❌ Impossibile inviare il messaggio. Riprova più tardi.</div>
-                    </form>
+                      <button type="submit" class="u-btn u-button-style u-custom-color-3 u-btn-1">Invia</button> <!--u-btn-1 deleted from class-->
+                      </div>                      
+                      </form>
+
+                      <!-- Feedback Messages -->
+                       <div id="messaggi">
+                          <div id="grazie" class="messaggio">✅ Grazie! Il tuo messaggio è stato inviato.</div>
+                          <div id="errore" class="messaggio">❌ Impossibile inviare il messaggio. Riprova più tardi.</div>
+                        </div>
+                      
                     </div>
                 </div>
               </div>
@@ -323,6 +339,49 @@
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80"> Design 4 Green – Copyright © 2025 </section>
   
-  
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const form = document.getElementById("contattiForm");
+          const messaggi = document.getElementById("messaggi");
+          const messaggioSuccesso = document.getElementById("grazie");
+          const messaggioErrore = document.getElementById("errore");
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+              messaggi.classList.add("attivo");
+              messaggioErrore.textContent = "❌ Completa il reCAPTCHA prima di inviare.";
+              messaggioErrore.style.display = "block";
+              messaggioSuccesso.style.display = "none";
+              return;
+            }
+
+            fetch(form.action, {
+              method: "POST",
+              body: new FormData(form),
+              headers: {
+                'Accept': 'application/json'
+              }
+            }).then(response => {
+              messaggi.classList.add("attivo");
+              if (response.ok) {
+                messaggioSuccesso.style.display = "block";
+                messaggioErrore.style.display = "none";
+                form.reset();
+                grecaptcha.reset();
+              } else {
+                messaggioSuccesso.style.display = "none";
+                messaggioErrore.style.display = "block";
+              }
+            }).catch(error => {
+              messaggi.classList.add("attivo");
+              messaggioSuccesso.style.display = "none";
+              messaggioErrore.style.display = "block";
+            });
+          });
+        });
+      </script>
 
 </body></html>
