@@ -17,7 +17,7 @@
         }
 
         #messaggi.attivo {
-          max-height: 200px;
+          max-height: 100px;
         }
 
         .messaggio {
@@ -238,15 +238,13 @@
 
                       <div class="u-align-left u-form-group u-form-submit">
                       <button type="submit" class="u-btn u-button-style u-custom-color-3 u-btn-1">Invia</button> <!--u-btn-1 deleted from class-->
-                      </div>                      
-                      </form>
-
+                      </div>    
                       <!-- Feedback Messages -->
-                       <div id="messaggi">
+                      <div id="messaggi">
                           <div id="grazie" class="messaggio">✅ Grazie! Il tuo messaggio è stato inviato.</div>
                           <div id="errore" class="messaggio">❌ Impossibile inviare il messaggio. Riprova più tardi.</div>
-                        </div>
-                      
+                      </div>                  
+                      </form>                      
                     </div>
                 </div>
               </div>
@@ -355,6 +353,15 @@
               messaggioErrore.textContent = "❌ Completa il reCAPTCHA prima di inviare.";
               messaggioErrore.style.display = "block";
               messaggioSuccesso.style.display = "none";
+
+              // 🔴 Tracciamento errore: reCAPTCHA non compilato
+              gtag('event', 'form_submit_error', {
+                event_category: 'Contatti',
+                event_label: 'reCAPTCHA non compilato',
+                page_path: window.location.pathname,
+                value: 0
+              });
+
               return;
             }
 
@@ -366,22 +373,49 @@
               }
             }).then(response => {
               messaggi.classList.add("attivo");
+
               if (response.ok) {
                 messaggioSuccesso.style.display = "block";
                 messaggioErrore.style.display = "none";
                 form.reset();
                 grecaptcha.reset();
+
+                // ✅ Tracciamento invio riuscito
+                gtag('event', 'form_submit', {
+                  event_category: 'Contatti',
+                  event_label: 'Invio riuscito',
+                  page_path: window.location.pathname,
+                  value: 1
+                });
+
               } else {
                 messaggioSuccesso.style.display = "none";
                 messaggioErrore.style.display = "block";
+
+                // ❌ Tracciamento errore: risposta non OK
+                gtag('event', 'form_submit_error', {
+                  event_category: 'Contatti',
+                  event_label: 'Errore risposta server',
+                  page_path: window.location.pathname,
+                  value: 0
+                });
               }
             }).catch(error => {
               messaggi.classList.add("attivo");
               messaggioSuccesso.style.display = "none";
               messaggioErrore.style.display = "block";
+
+              // ❌ Tracciamento errore: fetch fallito
+              gtag('event', 'form_submit_error', {
+                event_category: 'Contatti',
+                event_label: 'Errore fetch',
+                page_path: window.location.pathname,
+                value: 0
+              });
             });
           });
         });
       </script>
+
 
 </body></html>
