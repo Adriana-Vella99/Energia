@@ -2246,6 +2246,7 @@ a {
 }
 .u-form-submit .u-btn-submit.disabled,
 .u-form-submit .u-btn-submit[disabled] {
+  pointer-events: none;
   opacity: 0.6;
 }
 .u-form-horizontal .u-form-group:not(.u-label-top) {
