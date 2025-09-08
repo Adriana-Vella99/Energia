@@ -218,8 +218,13 @@
                         <button type="submit" class="u-btn u-btn-submit u-button-style u-custom-color-3 u-btn-1">Invia</button> 
                       </div>
 
-                      <div id="grazie" class="u-form-send-message u-form-send-success" style="display:none;"> Grazie! Il tuo messaggio è stato inviato. </div> 
-                      <div class="u-form-send-error u-form-send-message" style="display:none;"> Impossibile inviare il messaggio. Correggere gli errori e riprovare. </div>
+                      <div id="grazie" class="u-form-send-message u-form-send-success" style="display:none;">
+                        Grazie! Il tuo messaggio è stato inviato.
+                      </div>
+
+                      <div id="errore" class="u-form-send-error u-form-send-message" style="display:none;">
+                        Impossibile inviare il messaggio. Correggere gli errori e riprovare.
+                      </div>
                     </form>
                     </div>
                 </div>
@@ -314,28 +319,34 @@
     <section class="u-backlink u-clearfix u-grey-80"> Design 4 Green – Copyright © 2025 </section>
   
     <script>
-      document.querySelector("form").addEventListener("submit", function (e) {
-        e.preventDefault(); // blocca l'invio automatico
-        const form = e.target;
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const messaggioSuccesso = document.getElementById("grazie");
+        const messaggioErrore = document.getElementById("errore");
 
-        fetch(form.action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: {
-            'Accept': 'application/json'
-          }
-        }).then(response => {
-            if (response.ok) {
-              document.getElementById("grazie").style.display = "block"; // mostra il messaggio di successo
-              document.querySelector(".u-form-send-error").style.display = "none"; // nasconde eventuali errori precedenti
-              form.reset(); // pulisce il form
-            } else {
-              document.querySelector(".u-form-send-error").style.display = "block"; // mostra il messaggio di errore
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: {
+              'Accept': 'application/json'
             }
-          })
-          .catch(error => {
-            document.querySelector(".u-form-send-error").style.display = "block"; // mostra errore anche in caso di problemi di rete
+          }).then(response => {
+            if (response.ok) {
+              messaggioSuccesso.style.display = "block";
+              messaggioErrore.style.display = "none";
+              form.reset();
+            } else {
+              messaggioSuccesso.style.display = "none";
+              messaggioErrore.style.display = "block";
+            }
+          }).catch(error => {
+            messaggioSuccesso.style.display = "none";
+            messaggioErrore.style.display = "block";
           });
+        });
       });
     </script>
 
