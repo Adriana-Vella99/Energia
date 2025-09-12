@@ -1470,4 +1470,34 @@
   .u-section-7 .u-btn-1 {
     margin-top: 97px;
   }
+
+  /* Stile del selettore di lingua */
+  .goog-te-gadget {
+    font-size: 1rem;
+    margin: 10px;
+  }
+
+  /* Nasconde la barra in alto */
+  .goog-te-banner-frame {
+    display: none !important;
+  }
+
+  /* Evita lo spostamento del contenuto */
+  body {
+    top: 0px !important;
+  }
+
+  /* Nasconde il logo di Google */
+  .goog-logo-link {
+    display: none !important;
+  }
+
+  /* Personalizza il menu a tendina */
+  .goog-te-gadget .goog-te-combo {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+  }
+
 }
