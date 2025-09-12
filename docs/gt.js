@@ -78,6 +78,7 @@
         '<span>'+names[code]+'</span>';
       a.addEventListener('click', function(e){
         e.preventDefault();
+        var code = this.getAttribute('data-lang');
         // aggiorna icona e label
         switcher.querySelector('img').src = flagsLoc+code+flagExt;
         switcher.querySelector('span').innerText = names[code];
