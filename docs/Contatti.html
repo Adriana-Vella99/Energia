@@ -344,8 +344,17 @@
     const messaggioSuccesso = document.getElementById("grazie");
     const messaggioErrore = document.getElementById("errore");
 
+	// Evita che il form venga gestito più volte
+	let formInviato = false:
+
     form.addEventListener("submit", function (e) {
-      e.preventDefault();
+		e.preventDefault();
+		console.log("Form submit intercettato");
+
+		
+		if (formInviato) return; // blocca invii multipli
+		formInviato = true;
+
 
       const recaptchaResponse = grecaptcha.getResponse();
       if (!recaptchaResponse) {
@@ -361,6 +370,7 @@
           page_path: window.location.pathname
         });
 
+        formInviato = false; // consente nuovo tentativo
         return;
       }
 
@@ -397,6 +407,8 @@
             page_path: window.location.pathname
           });
         }
+		  
+        formInviato = false; // consente nuovo invio
       }).catch(error => {
         messaggi.classList.add("attivo");
         messaggioSuccesso.style.display = "none";
@@ -407,7 +419,8 @@
           event: 'form_submit_error',
           form_status: 'fetch_error',
           page_path: window.location.pathname
-        });
+        });	  
+        formInviato = false; // consente nuovo invio
       });
     });
   });
