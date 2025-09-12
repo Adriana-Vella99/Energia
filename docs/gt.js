@@ -80,10 +80,19 @@
       a.addEventListener('click', function(e){
         e.preventDefault();
         var code = this.getAttribute('data-lang');
-        // aggiorna icona e label
-        switcher.querySelector('img').src = flagsLoc+code+flagExt;
-        switcher.querySelector('span').innerText = names[code];
-        // redirect sempre sull'URL originale
+
+        if (code === defaultLang) {
+          // 1) cancella il cookie GTranslate
+          var domain = document.location.hostname;
+          document.cookie = 'googtrans=/'+defaultLang+'/'+defaultLang+';domain='+domain+';path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+          document.cookie = 'googtrans=/'+defaultLang+'/'+defaultLang+';domain=.'+domain+';path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+
+          // 2) ricarica l’URL originale
+          window.location.href = origUrl;
+          return;
+        }
+
+        // altrimenti usa Google Translate come prima
         var url = 'https://translate.google.com/translate'
                 + '?sl=' + defaultLang
                 + '&tl=' + code
