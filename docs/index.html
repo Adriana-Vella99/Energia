@@ -80,17 +80,20 @@
         });
 
         document.querySelectorAll("#language-options li").forEach(item => {
-          item.addEventListener("click", () => {
-            const lang = item.getAttribute("data-lang");
-            currentBtn.innerHTML = item.innerHTML + " ⌄";
+        item.addEventListener("click", () => {
+          const lang = item.getAttribute("data-lang");
 
-            document.querySelectorAll("#language-options li").forEach(li => li.classList.remove("active"));
-            item.classList.add("active");
+          // Aggiorna bottone e classe attiva
+          document.getElementById("current-language").innerHTML = item.innerHTML + " ⌄";
+          document.querySelectorAll("#language-options li").forEach(li => li.classList.remove("active"));
+          item.classList.add("active");
 
-            const url = `https://translate.google.com/translate?u=${encodeURIComponent(window.location.href)}&hl=${lang}&tl=${lang}&sl=it`;
-            window.location.href = url;
-          });
+          // Reindirizza tramite Google Translate
+          const baseUrl = window.location.href;
+          const translateUrl = `https://translate.google.com/translate?sl=it&tl=${lang}&u=${encodeURIComponent(baseUrl)}`;
+          window.location.href = translateUrl;
         });
+      });
       </script>
       <!-- End Google Translate --> 
 
