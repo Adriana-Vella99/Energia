@@ -237,7 +237,7 @@
                       <div class="g-recaptcha" data-sitekey="6LdxE8IrAAAAAC_RtBrhaI0SwsS-cMIwU2RC4awo"></div>
 
                       <div class="u-align-left u-form-group u-form-submit">
-                      <button type="submit" class="u-btn u-button-style u-custom-color-3 u-btn-1">Invia</button> <!--u-btn-1 deleted from class-->
+                      <button type="button" id="inviaBtn" class="u-btn u-button-style u-custom-color-3 u-btn-1">Invia</button> 
                       </div>    
                       <!-- Feedback Messages -->
                       <div id="messaggi">
@@ -269,7 +269,7 @@
               </div>
               <div class="u-container-style u-layout-cell u-size-24-lg u-size-28-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-2">
                 <div class="u-container-layout u-valign-middle u-container-layout-2">
-                  <a href="./Contatti.html" data-page-id="1101527008" class="u-active-white u-align-left u-border-active-white u-border-hover-white u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-white u-radius-50 u-text-active-color-var u-text-body-alt-color u-text-hover-color-var u-btn-1" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-delay="500" title="Contatti">parla con un esperto</a>
+                  <a href="./Contatti.html" data-page-id="1101527008" class="u-active-white u-align-left u-border-active-white u-border-hover-white u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-white u-radius-50 u-text-active-color-var u-text-body-alt-color u-text-hover-color-var u-btn-1" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-delay="0" title="Contatti">parla con un esperto</a>
                 </div>
               </div>
             </div>
@@ -343,22 +343,15 @@
     const messaggi = document.getElementById("messaggi");
     const messaggioSuccesso = document.getElementById("grazie");
     const messaggioErrore = document.getElementById("errore");
-    const bottoneInvio = form.querySelector("button[type='submit']");
+    const bottoneInvio = document.getElementById("inviaBtn");
 
     // Evita che il form venga gestito più volte
     let formInviato = false;
 
-    // Disattiva completamente l'invio nativo del form
-    form.setAttribute("novalidate", true);
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault(); // blocca invio nativo
+    bottoneInvio.addEventListener("click", function () {
       console.log("Form submit intercettato");
 
-      if (formInviato) {
-        console.warn("Form già inviato, blocco doppio invio");
-        return;
-      }
+      if (formInviato) return; // blocca invii multipli
 
       // Validazione HTML5 manuale
       if (!form.checkValidity()) {
@@ -369,7 +362,6 @@
         return;
       }
 
-      // Controllo reCAPTCHA
       const recaptchaResponse = grecaptcha.getResponse();
       if (!recaptchaResponse) {
         messaggi.classList.add("attivo");
@@ -396,8 +388,7 @@
         headers: {
           'Accept': 'application/json'
         }
-      })
-      .then(response => {
+      }).then(response => {
         messaggi.classList.add("attivo");
 
         if (response.ok) {
@@ -414,8 +405,8 @@
           });
 
         } else {
-          messaggioErrore.textContent = "❌ Errore nell'invio. Riprova.";
           messaggioSuccesso.style.display = "none";
+          messaggioErrore.textContent = "❌ Errore nell'invio. Riprova.";
           messaggioErrore.style.display = "block";
 
           // ❌ Tracciamento errore: risposta non OK
@@ -426,14 +417,12 @@
           });
         }
 
-        formInviato = false;
+        formInviato = false; // consente nuovo invio
         bottoneInvio.disabled = false;
-      })
-      .catch(error => {
-        console.error("Errore fetch:", error);
+      }).catch(error => {
         messaggi.classList.add("attivo");
-        messaggioErrore.textContent = "❌ Errore di rete. Riprova.";
         messaggioSuccesso.style.display = "none";
+        messaggioErrore.textContent = "❌ Errore di rete. Riprova.";
         messaggioErrore.style.display = "block";
 
         // ❌ Tracciamento errore: fetch fallito
@@ -443,12 +432,11 @@
           page_path: window.location.pathname
         });
 
-        formInviato = false;
+        formInviato = false; // consente nuovo invio
         bottoneInvio.disabled = false;
       });
     });
   });
 </script>
-
 
 </body></html>
