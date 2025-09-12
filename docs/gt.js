@@ -13,7 +13,8 @@
     en: "English",
     fr: "Français",
     de: "Deutsch",
-    es: "Español"
+    es: "Español",
+    nl: "Dutch"
   };
   var langs       = Array.isArray(cfg.languages) && cfg.languages.length
                     ? cfg.languages
