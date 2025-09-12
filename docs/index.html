@@ -64,7 +64,7 @@
         <button id="current-language">🇮🇹 Italiano ⌄</button>
         <ul id="language-options">
           <li data-lang="it" class="active"><img src="https://flagcdn.com/w40/it.png" alt="IT"> Italiano</li>
-          <li data-lang="it"><img src="https://flagcdn.com/w40/gb.png" alt="EN"> English</li>
+          <li data-lang="en"><img src="https://flagcdn.com/w40/gb.png" alt="EN"> English</li>
           <li data-lang="fr"><img src="https://flagcdn.com/w40/fr.png" alt="FR"> Français</li>
           <li data-lang="de"><img src="https://flagcdn.com/w40/de.png" alt="DE"> Deutsch</li>
           <li data-lang="es"><img src="https://flagcdn.com/w40/es.png" alt="ES"> Español</li>
@@ -87,7 +87,7 @@
             document.querySelectorAll("#language-options li").forEach(li => li.classList.remove("active"));
             item.classList.add("active");
 
-            const url = `https://translate.google.com/translate?hl=${lang}&sl=auto&tl=${lang}&u=${encodeURIComponent(window.location.href)}`;
+            const url = `https://translate.google.com/translate?u=${encodeURIComponent(window.location.href)}&hl=${lang}&tl=${lang}&sl=it`;
             window.location.href = url;
           });
         });
