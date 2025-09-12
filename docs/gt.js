@@ -1,88 +1,116 @@
 (function(){
   'use strict';
 
-  // 1. recupera impostazioni
+  // 1. Recupera impostazioni e attributi dal <script>
   var scriptEl = document.currentScript;
   var widgetId = scriptEl.getAttribute('data-gt-widget-id');
-  var gt = (window.gtranslateSettings||{})[widgetId];
-  if (!gt) return;
+  var cfg      = (window.gtranslateSettings||{})[widgetId];
+  if (!cfg) return;
 
-  var langs   = gt.languages;
-  var defLang = gt.default_language || 'it';
-  var flags   = (gt.flags_location||'./images/flags/svg/').replace(/\/?$/,'/') ;
-  var size    = gt.flag_size || 24;
-  var wrapper = document.querySelector(gt.wrapper_selector);
+  // 2. Lingue e default
+  var names = {
+    it: "Italiano",
+    en: "English",
+    fr: "Français",
+    de: "Deutsch",
+    es: "Español"
+  };
+  var langs       = Array.isArray(cfg.languages) && cfg.languages.length
+                    ? cfg.languages
+                    : Object.keys(names);
+  var defaultLang = cfg.default_language || 'it';
+
+  // 3. Configurazione bandiere
+  var flagsLoc = (cfg.flags_location||'./images/flags/svg/').replace(/\/?$/,'/') ;
+  var flagSize = cfg.flag_size || 24;
+  var flagExt  = '.svg';
+
+  // 4. Wrapper e stile (fisso in alto a destra)
+  var wrapper = document.querySelector(cfg.wrapper_selector||'#google-translate');
   if (!wrapper) return;
-
-  // 2. style del wrapper (fisso in alto a destra)
-  Object.assign(wrapper.style,{
-    position:'fixed', top:'20px', right:'20px',
-    zIndex:'9999', fontFamily:'sans-serif'
+  Object.assign(wrapper.style, {
+    position: 'fixed',
+    top:      '20px',
+    right:    '20px',
+    zIndex:   '10000',
+    fontFamily:'sans-serif'
   });
 
-  // 3. carica Google Translate inline (API)
-  window.googleTranslateElementInit2 = function(){
-    new google.translate.TranslateElement({
-      pageLanguage: defLang,
-      includedLanguages: langs.join(','),
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-      autoDisplay: false
-    }, 'google_translate_element2');
-  };
-  var s = document.createElement('script');
-  s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2';
-  document.head.appendChild(s);
+  // 5. URL originale per sempre
+  var origUrl = scriptEl.getAttribute('data-gt-orig-url')
+              || (function(){
+                   var m = window.location.search.match(/[?&]u=([^&]+)/);
+                   return m ? decodeURIComponent(m[1]) : window.location.href;
+                 })();
 
-  // 4. helper per creare flag+label
-  function makeItem(code){
-    var a = document.createElement('a');
-    a.href = '#';
-    a.setAttribute('data-lang', code);
-    a.style.cssText = 'display:flex;align-items:center;padding:6px 12px;font-size:14px;text-decoration:none;color:inherit';
-    a.innerHTML =
-      '<img src="'+flags+code+'.svg" width="'+size+'" height="'+size+'" '+
-      'style="margin-right:6px;vertical-align:middle" alt="'+code+'">'+
-      '<span>'+code.toUpperCase()+'</span>';
-    a.addEventListener('click', function(evt){
-      evt.preventDefault();
-      // chiama l’API inline, non redirect
-      if(window.doGTranslate){
-        window.doGTranslate(defLang+'|'+code);
-      }
-    });
-    return a;
+  // 6. Crea switcher e dropdown
+  function makeSwitcher(code){
+    var d = document.createElement('div');
+    d.className = 'gt-switcher';
+    d.style.cssText = 'display:inline-flex;align-items:center;cursor:pointer';
+    d.innerHTML =
+      '<img src="'+flagsLoc+code+flagExt+'" '+
+           'width="'+flagSize+'" height="'+flagSize+'" '+
+           'style="margin-right:6px;vertical-align:middle" alt="'+code+'">'+
+      '<span style="font-size:14px;color:inherit">'+names[code]+'</span>'+
+      '<span style="font-size:10px;color:#666;margin-left:4px">▼</span>';
+    return d;
   }
 
-  // 5. costruisci dropdown
-  var btn = document.createElement('div');
-  btn.className = 'gt-switcher';
-  btn.style.cssText = 'cursor:pointer;display:inline-flex;align-items:center';
-  btn.innerHTML =
-    '<img src="'+flags+defLang+'.svg" width="'+size+'" height="'+size+'" '+
-    'style="margin-right:6px;vertical-align:middle" alt="'+defLang+'">'+
-    '<span style="font-size:14px">'+defLang.toUpperCase()+'</span>'+
-    '<span style="font-size:10px;color:#666;margin-left:4px">▼</span>';
+  function makeList(){
+    var div = document.createElement('div');
+    div.className = 'gt-list';
+    div.style.cssText =
+      'display:none;position:absolute;top:100%;right:0;'
+    + 'background:#fff;border:1px solid #ddd;border-radius:6px;'
+    + 'box-shadow:0 4px 8px rgba(0,0,0,0.1);padding:8px 0;z-index:10001;';
+    langs.forEach(function(code){
+      var a = document.createElement('a');
+      a.href = '#';
+      a.setAttribute('data-lang', code);
+      a.style.cssText =
+        'display:flex;align-items:center;padding:6px 12px;'
+      + 'font-size:14px;text-decoration:none;color:inherit';
+      a.innerHTML =
+        '<img src="'+flagsLoc+code+flagExt+'" '+
+             'width="'+flagSize+'" height="'+flagSize+'" '+
+             'style="margin-right:6px;vertical-align:middle" alt="'+code+'">'+
+        '<span>'+names[code]+'</span>';
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        // aggiorna icona e label
+        switcher.querySelector('img').src = flagsLoc+code+flagExt;
+        switcher.querySelector('span').innerText = names[code];
+        // redirect sempre sull'URL originale
+        var url = 'https://translate.google.com/translate'
+                + '?sl=' + defaultLang
+                + '&tl=' + code
+                + '&u='  + encodeURIComponent(origUrl);
+        window.location.href = url;
+      });
+      div.appendChild(a);
+    });
+    return div;
+  }
 
-  var list = document.createElement('div');
-  list.className = 'gt-list';
-  list.style.cssText = 'display:none;position:absolute;top:100%;right:0;'
-    +'background:#fff;border:1px solid #ddd;border-radius:6px;box-shadow:0 4px 8px rgba(0,0,0,0.1);'
-    +'z-index:10000;';
-
-  langs.forEach(function(l){
-    list.appendChild(makeItem(l));
-  });
-
-  wrapper.appendChild(btn);
+  var switcher = makeSwitcher(defaultLang);
+  var list     = makeList();
+  wrapper.appendChild(switcher);
   wrapper.appendChild(list);
 
-  // 6. toggle apertura/chiusura
-  btn.addEventListener('click', function(e){
-    e.stopPropagation();
-    list.style.display = list.style.display==='block'?'none':'block';
+  // 7. Toggle dropdown
+  switcher.addEventListener('click', function(evt){
+    evt.stopPropagation();
+    list.style.display = list.style.display==='block' ? 'none' : 'block';
   });
   document.addEventListener('click', function(){
     list.style.display = 'none';
   });
+
+  // 8. Hover effect via CSS-injection
+  var styleEl = document.createElement('style');
+  styleEl.textContent =
+    cfg.wrapper_selector + ' .gt-list a:hover { background: #f5f5f5; }';
+  document.head.appendChild(styleEl);
 
 })();
