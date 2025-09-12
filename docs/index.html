@@ -88,7 +88,7 @@
           document.querySelectorAll("#language-options li").forEach(li => li.classList.remove("active"));
           item.classList.add("active");
 
-          // Reindirizza tramite Google Translate
+          // Reindirizza con URL pulito
           const baseUrl = window.location.href;
           const translateUrl = `https://translate.google.com/translate?sl=it&tl=${lang}&u=${encodeURIComponent(baseUrl)}`;
           window.location.href = translateUrl;
