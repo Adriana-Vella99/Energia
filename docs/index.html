@@ -60,17 +60,26 @@
         </a>
   
     <!-- Google Translate -->    
-        <div id="google-translate"></div>
-        <script>
-          window.gtranslateSettings = {
-            "43217984": {
-              default_language: "it",
-              languages: ["en","fr","de","es"],
-              wrapper_selector: "#google-translate"
-            }
-          };
-        </script>
-        <script src="./gt.js" data-gt-widget-id="43217984"></script>
+        <!-- container visibile -->
+<div id="google-translate"></div>
+
+<!-- container nascosto per Google -->
+    <div id="google_translate_element2" style="display:none;"></div>
+
+    <script>
+      window.gtranslateSettings = {
+        "43217984": {
+          default_language: "it",
+          languages: ["en","fr","de","es", "it"],
+          wrapper_selector: "#google-translate",
+          flag_size: 24,
+          flags_location: "./images/flags/svg/"
+        }
+      };
+    </script>
+
+    <script src="./gt.js" data-gt-widget-id="43217984"></script>
+
     <!-- End Google Translate --> 
 
         <nav class="u-dropdown-icon u-menu u-menu-dropdown u-offcanvas u-menu-1" data-responsive-from="MD" role="navigation">
