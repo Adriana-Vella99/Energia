@@ -1,7 +1,7 @@
 /* Contenitore del widget */
 #google_translate_element {
   position: fixed;
-  top: 10px;
+  top: 0px;
   right: 20px;
   z-index: 9999;
   font-family: 'Inter', 'Segoe UI', sans-serif;
@@ -29,6 +29,18 @@
 iframe.goog-te-banner-frame {
   display: none !important;
 }
+
+/* Nasconde la barra gialla di Google Translate */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+/* Evita lo spostamento del contenuto verso il basso */
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
 
 body {
   top: 0 !important;
