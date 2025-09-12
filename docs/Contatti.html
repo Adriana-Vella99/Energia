@@ -344,18 +344,19 @@
     const messaggioSuccesso = document.getElementById("grazie");
     const messaggioErrore = document.getElementById("errore");
 
-	// Evita che il form venga gestito più volte
-	let formInviato = false;
+    // Evita che il form venga gestito più volte
+    let formInviato = false;
 
     form.addEventListener("submit", function (e) {
-		e.preventDefault();
-		console.log("Form submit intercettato");
+      e.preventDefault(); // blocca invio nativo del form
+      console.log("Form submit intercettato");
 
-		
-		if (formInviato) return; // blocca invii multipli
-		formInviato = true;
+      if (formInviato) {
+        console.warn("Form già inviato, blocco doppio invio");
+        return; // blocca invii multipli
+      }
 
-
+      // Controllo reCAPTCHA
       const recaptchaResponse = grecaptcha.getResponse();
       if (!recaptchaResponse) {
         messaggi.classList.add("attivo");
@@ -364,15 +365,16 @@
         messaggioSuccesso.style.display = "none";
 
         // 🔴 Tracciamento errore: reCAPTCHA non compilato
-        window.dataLayer.push({
+        window.dataLayer?.push({
           event: 'form_submit_error',
           form_status: 'recaptcha_missing',
           page_path: window.location.pathname
         });
 
-        formInviato = false; // consente nuovo tentativo
-        return;
+        return; // non impostare formInviato, così può riprovare
       }
+
+      formInviato = true; // blocca invii multipli
 
       fetch(form.action, {
         method: "POST",
@@ -380,7 +382,8 @@
         headers: {
           'Accept': 'application/json'
         }
-      }).then(response => {
+      })
+      .then(response => {
         messaggi.classList.add("attivo");
 
         if (response.ok) {
@@ -390,36 +393,41 @@
           grecaptcha.reset();
 
           // ✅ Tracciamento invio riuscito
-          window.dataLayer.push({
+          window.dataLayer?.push({
             event: 'form_submit',
             form_status: 'success',
             page_path: window.location.pathname
           });
 
         } else {
+          messaggioErrore.textContent = "❌ Errore nell'invio. Riprova.";
           messaggioSuccesso.style.display = "none";
           messaggioErrore.style.display = "block";
 
           // ❌ Tracciamento errore: risposta non OK
-          window.dataLayer.push({
+          window.dataLayer?.push({
             event: 'form_submit_error',
             form_status: 'response_error',
             page_path: window.location.pathname
           });
         }
-		  
+
         formInviato = false; // consente nuovo invio
-      }).catch(error => {
+      })
+      .catch(error => {
+        console.error("Errore fetch:", error);
         messaggi.classList.add("attivo");
+        messaggioErrore.textContent = "❌ Errore di rete. Riprova.";
         messaggioSuccesso.style.display = "none";
         messaggioErrore.style.display = "block";
 
         // ❌ Tracciamento errore: fetch fallito
-        window.dataLayer.push({
+        window.dataLayer?.push({
           event: 'form_submit_error',
           form_status: 'fetch_error',
           page_path: window.location.pathname
-        });	  
+        });
+
         formInviato = false; // consente nuovo invio
       });
     });
