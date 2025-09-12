@@ -155,7 +155,7 @@
                       <h2 class="u-align-center-sm u-align-center-xs u-text u-text-1">Studio di Architettura</h2>
                       <p class="u-align-center-sm u-align-center-xs u-text u-text-2">Via Raffaello Sanzio 57, 63825 Monterubbiano FM</p>
                       <p class="u-align-center-sm u-align-center-xs u-text u-text-3">+​39 338 1333054</p>
-                      <p class="u-align-center-sm u-align-center-xs u-text u-text-4">giuseppe@architettopagano.it<br>arch.giuseppe.pagano@gmail.com
+                      <p class="u-align-center-sm u-align-center-xs u-text u-text-4">contatti@design4green.it<br>supporto@design4green.it
                       </p>
                     </div>
                   </div>
@@ -307,10 +307,10 @@
                   </p>
                   <div class="u-border-2 u-border-grey-60 u-expanded-width u-line u-line-horizontal u-opacity u-opacity-50 u-line-2"></div>
                   <p class="u-text u-text-default u-text-9"><span class="u-file-icon u-icon u-icon-4" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><img src="./images/542689-60430090.png" alt=""></span>
-                    <a href="mailto:giuseppe@architettopagano.it" class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-active-color-var u-text-hover-color-var u-btn-5">giuseppe@architettopagano.it</a>
+                    <a href="mailto:contatti@design4green.it" class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-active-color-var u-text-hover-color-var u-btn-5">contatti@design4green.it</a>
                   </p>
                   <p class="u-text u-text-default u-text-10"><span class="u-file-icon u-icon u-icon-5" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><img src="./images/542689-60430090.png" alt=""></span>
-                    <a href="mailto:arch.giuseppe.pagano@gmail.com" class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-active-color-var u-text-hover-color-var u-btn-6">arch.giuseppe.pagano@gmail.com</a>
+                    <a href="mailto:supporto@design4green.it" class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-active-color-var u-text-hover-color-var u-btn-6">supporto@design4green.it</a>
                   </p>
                 </div>
               </div>
@@ -343,17 +343,30 @@
     const messaggi = document.getElementById("messaggi");
     const messaggioSuccesso = document.getElementById("grazie");
     const messaggioErrore = document.getElementById("errore");
+    const bottoneInvio = form.querySelector("button[type='submit']");
 
     // Evita che il form venga gestito più volte
     let formInviato = false;
 
+    // Disattiva completamente l'invio nativo del form
+    form.setAttribute("novalidate", true);
+
     form.addEventListener("submit", function (e) {
-      e.preventDefault(); // blocca invio nativo del form
+      e.preventDefault(); // blocca invio nativo
       console.log("Form submit intercettato");
 
       if (formInviato) {
         console.warn("Form già inviato, blocco doppio invio");
-        return; // blocca invii multipli
+        return;
+      }
+
+      // Validazione HTML5 manuale
+      if (!form.checkValidity()) {
+        messaggi.classList.add("attivo");
+        messaggioErrore.textContent = "❌ Compila tutti i campi obbligatori.";
+        messaggioErrore.style.display = "block";
+        messaggioSuccesso.style.display = "none";
+        return;
       }
 
       // Controllo reCAPTCHA
@@ -371,10 +384,11 @@
           page_path: window.location.pathname
         });
 
-        return; // non impostare formInviato, così può riprovare
+        return;
       }
 
       formInviato = true; // blocca invii multipli
+      bottoneInvio.disabled = true;
 
       fetch(form.action, {
         method: "POST",
@@ -412,7 +426,8 @@
           });
         }
 
-        formInviato = false; // consente nuovo invio
+        formInviato = false;
+        bottoneInvio.disabled = false;
       })
       .catch(error => {
         console.error("Errore fetch:", error);
@@ -428,7 +443,8 @@
           page_path: window.location.pathname
         });
 
-        formInviato = false; // consente nuovo invio
+        formInviato = false;
+        bottoneInvio.disabled = false;
       });
     });
   });
