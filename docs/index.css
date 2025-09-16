@@ -794,7 +794,12 @@
   --animation-custom_in-opacity: 0;
   --animation-custom_in-rotate: 0deg;
   --animation-custom_in-scale: 1;
+  display: block; /* Added from here */
+  max-width: 1011px; 
+  height: auto;      /* mantiene proporzione originale */
   margin: -676px calc(((100% - 1140px) / 2) + 56px) 0 auto;
+  object-fit: contain;   /* mantiene tutto il contenuto visibile */
+  object-position: center center; /* mantiene il centro visibile */
 }
 
 .u-section-4 .u-group-1 {
@@ -905,10 +910,11 @@
   }
 
   .u-section-4 .u-image-1 {
-    width: 493px;
+    /* width: 493px;
     height: 328px;
-    margin-top: -383px;
+    margin-top: -383px;  */
     margin-right: calc(((100% - 540px) / 2));
+    max-width: 493px;  
   }
 
   .u-section-4 .u-group-1 {
