@@ -62,7 +62,7 @@
   height: 92px;
   width: 92px;
   background-image: none;
-  margin: -9px 51px 0 auto;
+  margin: -9px auto 0;
   padding: 0;
 }
 
@@ -401,7 +401,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   --animation-custom_in-translate_x: 0px;
-  --animation-custom_in-translate_y: 300px;
+  --animation-custom_in-translate_y: 100px;
   --text-hover-color-var: #2a4479;
   --text-active-color-var: #2a4479;
   margin: 34px auto 0;
@@ -440,7 +440,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   --animation-custom_in-translate_x: 0px;
-  --animation-custom_in-translate_y: 300px;
+  --animation-custom_in-translate_y: 100px;
   --text-hover-color-var: #2a4479;
   --text-active-color-var: #2a4479;
   margin: 34px auto 0;
@@ -481,7 +481,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   --animation-custom_in-translate_x: 0px;
-  --animation-custom_in-translate_y: 300px;
+  --animation-custom_in-translate_y: 100px;
   --text-hover-color-var: #2a4479;
   --text-active-color-var: #2a4479;
   margin: 34px auto 0;
@@ -522,7 +522,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   --animation-custom_in-translate_x: 0px;
-  --animation-custom_in-translate_y: 300px;
+  --animation-custom_in-translate_y: 100px;
   --text-hover-color-var: #2a4479;
   --text-active-color-var: #2a4479;
   margin: 34px auto 0;
