@@ -82,7 +82,7 @@
 
     <!-- End Google Translate --> 
 
-        <nav class="u-dropdown-icon u-menu u-menu-dropdown u-offcanvas u-menu-1" data-responsive-from="MD" role="navigation">
+        <nav class="u-dropdown-icon u-menu u-menu-dropdown u-offcanvas u-menu-1" data-responsive-from="xs" role="navigation">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700;">
             <a class="u-button-style u-custom---text-active-color-var u-custom---text-hover-color-var u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-hamburger-link u-nav-link u-text-active-palette-1-base u-text-hover-palette-1-base u-hamburger-link-1" href="#" tabindex="-1" aria-label="Open menu" aria-controls="07e9">
               <svg class="u-svg-link" viewBox="0 0 24 24"><use xlink:href="#menu-hamburger"></use></svg>
@@ -133,27 +133,44 @@
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
-          <style class="menu-style"> 
-			@media (max-width: 767.98px) {
-			  [data-responsive-from="XS"] .menu-collapse { 
-			    display: block !important; 
-			    visibility: visible !important; 
-			    opacity: 1 !important;
-			  }
-			  [data-responsive-from="XS"] .u-nav-container { 
-			    display: none !important; 
-			  }
-			}
-
-			  
-			.menu-collapse {
-			  background: red;
-			  height: 50px;
-			  width: 50px;
-			  display: block !important;
-			}
-
-			</style>
+          <style class="menu-style">
+		  @media (max-width: 767.98px) {
+		    nav.u-menu[data-responsive-from="XS"] .menu-collapse {
+		      display: block !important;
+		      visibility: visible !important;
+		      opacity: 1 !important;
+		      position: relative !important;
+		      z-index: 9999 !important;
+		    }
+		
+		    nav.u-menu[data-responsive-from="XS"] .u-nav-container {
+		      display: none !important;
+		    }
+		
+		    nav.u-menu[data-responsive-from="XS"] .u-hamburger-link {
+		      display: inline-block !important;
+		      visibility: visible !important;
+		      opacity: 1 !important;
+		    }
+		
+		    nav.u-menu[data-responsive-from="XS"] .u-nav-container-collapse {
+		      display: block !important;
+		      visibility: visible !important;
+		      opacity: 1 !important;
+		    }
+		  }
+		
+		  /* Debug visivo temporaneo */
+		  .menu-collapse {
+		    background: red !important;
+		    height: 50px !important;
+		    width: 50px !important;
+		    position: fixed !important;
+		    top: 10px;
+		    right: 10px;
+		    z-index: 9999 !important;
+		  }
+		</style>
         </nav>
         <!-- <form action="#" class="u-search u-search-layout-icon u-search-left u-search-1" data-search-token="no-license" data-href="/search/search.html" data-page-id="2346684">
           <div class="u-search-overlay"></div>
