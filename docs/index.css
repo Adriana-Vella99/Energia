@@ -161,6 +161,14 @@
   margin: 16px 0 0;
 }
 
+.u-section-1 .u-container-layout-3 {
+  padding: 31px 30px;
+}
+
+.u-section-1 .u-container-layout-4 {
+  padding: 31px 30px;
+}
+
 .u-section-1 .u-btn-1 {
   letter-spacing: 2px;
   font-size: 1rem;
@@ -195,7 +203,7 @@
   --active-color-var: #2a4479;
   --border-hover-color-var: #2a4479;
   font-weight: 700;
-  margin: -51px 139px 60px auto;
+  margin: 71px auto 0 138px;
   padding: 13px 59px 13px 58px;
 }
 
