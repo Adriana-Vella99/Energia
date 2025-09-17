@@ -787,7 +787,7 @@
 }
 
 .u-section-4 .u-image-1 {
-  width: 1011px;
+  width: 100%; /* 1011 */
   height: auto; /* It was 607 */
   margin: -676px calc(((100% - 1140px) / 2) + 56px) 0 auto;
   --animation-custom_in-translate_x: 300px;
@@ -850,7 +850,7 @@
   }
 
   .u-section-4 .u-image-1 {
-    width: 865px;
+    /*width: 865px;*/
     height: auto;
     margin: -628px calc(((100% - 940px) / 2)) 0 auto;
   }
@@ -874,7 +874,7 @@
   }
 
   .u-section-4 .u-image-1 {
-    width: 720px; /*658px;*/
+    /*width: 720px;*/
     height: auto;
     margin: -528px calc(((100% - 720px) / 2)) 0 auto;
   }
@@ -903,7 +903,7 @@
   }
 
   .u-section-4 .u-image-1 {
-    width: 540px; /*493px*/
+    /*width: 493px;*/
     height: auto;
     margin-top: -383px;  
     margin: -383px calc(((100% - 540px) / 2)) 0 auto;
@@ -935,7 +935,7 @@
   }
 
   .u-section-4 .u-image-1 {
-    width: 340px; /*298px*/
+    /*width: 298px;*/
     height: auto;
     margin: -264px calc(((100% - 340px) / 2)) 0 auto;
   }
