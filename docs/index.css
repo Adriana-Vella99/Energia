@@ -797,9 +797,6 @@
   --animation-custom_in-scale: 1;
   max-width: 1011px; /* optional: limit */
   aspect-ratio: 1380 / 920; /* keep original proportion of the image */
-  object-fit: contain;
-  object-position: center center;
-  display: block;
 }
 
 .u-section-4 .u-group-1 {
