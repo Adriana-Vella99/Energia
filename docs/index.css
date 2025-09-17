@@ -211,8 +211,8 @@
   --active-color-var: #2a4479;
   --border-hover-color-var: #2a4479;
   font-weight: 700;
-  margin: 0 auto 0 0;
-  padding: 12px 59px 13px 58px;
+  margin: 0 0 0 auto;
+  padding: 13px 40px 13px 38px;
 }
 
 @media (max-width: 1199px) {
