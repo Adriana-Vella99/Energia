@@ -161,44 +161,23 @@
   margin: 16px 0 0;
 }
 
-.u-section-1 .u-layout-cell-1 {
-  min-height: 77px;
-  --animation-custom_in-translate_x: 0px;
-  --animation-custom_in-translate_y: 300px;
-  --animation-custom_in-opacity: 0;
-  --animation-custom_in-rotate: 0deg;
-  --animation-custom_in-scale: 1;
-}
-
-.u-section-1 .u-layout-cell-2 {
-  min-height: 77px;
-  --animation-custom_in-translate_x: 0px;
-  --animation-custom_in-translate_y: 300px;
-  --animation-custom_in-opacity: 0;
-  --animation-custom_in-rotate: 0deg;
-  --animation-custom_in-scale: 1;
-}
-
-.u-section-1 .u-container-layout-5 {
-  padding: 10px;
-}
-
-.u-section-1 .u-container-layout-6 {
-  padding: 10px;
-}
-
 .u-section-1 .u-btn-1 {
   letter-spacing: 2px;
   font-size: 1rem;
   border-style: solid;
   text-transform: uppercase;
   background-image: none;
+  --animation-custom_in-translate_x: 0px;
+  --animation-custom_in-translate_y: 300px;
+  --animation-custom_in-opacity: 0;
+  --animation-custom_in-rotate: 0deg;
+  --animation-custom_in-scale: 1;
   --hover-color-var: #2a4479;
   --active-color-var: #2a4479;
   --border-hover-color-var: #2a4479;
   font-weight: 700;
-  margin: 0 0 0 auto;
-  padding: 13px 40px 13px 38px;
+  margin: 71px auto 0 138px;
+  padding: 13px 59px 13px 58px;
 }
 
 .u-section-1 .u-btn-2 {
@@ -207,12 +186,17 @@
   border-style: solid;
   text-transform: uppercase;
   background-image: none;
+  --animation-custom_in-translate_x: 0px;
+  --animation-custom_in-translate_y: 300px;
+  --animation-custom_in-opacity: 0;
+  --animation-custom_in-rotate: 0deg;
+  --animation-custom_in-scale: 1;
   --hover-color-var: #2a4479;
   --active-color-var: #2a4479;
   --border-hover-color-var: #2a4479;
   font-weight: 700;
-  margin: 0 0 0 auto;
-  padding: 13px 40px 13px 38px;
+  margin: -51px 139px 60px auto;
+  padding: 13px 59px 13px 58px;
 }
 
 @media (max-width: 1199px) {
@@ -324,13 +308,12 @@
     padding-right: 20px;
   }
 
-   .u-section-3 .u-btn-1 {
-    margin-right: auto;
-  }
-
-  .u-section-3 .u-btn-2 {
-    margin-left: auto;
-  }
+   .u-section-1 .u-btn-1,
+    .u-section-1 .u-btn-2 {
+      display: block;
+      width: 100%;
+      margin: 10px auto; 
+    }
 }
 
 @media (max-width: 575px) {
