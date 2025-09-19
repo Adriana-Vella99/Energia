@@ -904,14 +904,21 @@
 }
 
 /* To all sections */
-.u-section-2,
+.u-section-2{
+  padding: 105px 0 35px;
+  min-height: auto;
+}
+
 .u-section-3,
 .u-section-4,
 .u-section-5,
 .u-section-6,
-.u-section-7,
-.u-section-,
-.u-section-9 {
+.u-section-7{
   padding: 70px 0 35px;
+  min-height: auto;
+}
+
+.u-section-8{
+  padding: 70px 0 105px;
   min-height: auto;
 }
