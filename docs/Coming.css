@@ -1,0 +1,37 @@
+.u-section-coming-soon .u-sheet-1 {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 30px;
+}
+
+.u-section-coming-soon .u-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.u-section-coming-soon .u-subtitle {
+  font-size: 1.75rem;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.u-section-coming-soon .u-description {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+  color: #777;
+}
+
+.u-section-coming-soon .u-btn-1 {
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 50px;
+  background-color: #2a4479;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+}
