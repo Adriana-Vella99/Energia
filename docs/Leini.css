@@ -79,10 +79,10 @@
 }
 
 .u-section-3 .u-repeater-1 {
-  grid-template-columns: repeat(4, calc(25% - 24px));
+  grid-template-columns: repeat(4, calc(25% - 22.5px));
   min-height: 151px;
   --gap: 30px;
-  grid-auto-columns: calc(25% - 24px);
+  grid-auto-columns: calc(25% - 22.5px);
 }
 
 .u-section-3 .u-container-layout-1 {
@@ -316,7 +316,7 @@
 }
 
 .u-section-4 .u-gallery-1 {
-  height: 200px;
+  height: 417px;
   margin-top: 60px;
   margin-bottom: 50px;
   grid-gap: 17px;
@@ -756,7 +756,7 @@
 }
 
 .u-section-7 .u-gallery-1 {
-  height: 2200px;
+  height: 2370px; /* rows x 200 + (rows - 1) x 17 */
   margin-top: 60px;
   margin-bottom: 50px;
   display: grid;
